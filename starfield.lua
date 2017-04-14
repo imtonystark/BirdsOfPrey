@@ -1,6 +1,7 @@
 ------------------------------------------------------------------------------
 -- Starfield.lua
--- code By: Jesse L Blum
+-- code By: Jesse L Blum, with portions from and inspired by some common
+--          example programs tutorials found in the wild.
 -- Revised: 2/18/2017
 ------------------------------------------------------------------------------
 local num_stars = 250
