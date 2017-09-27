@@ -5,5 +5,5 @@ Support for IOS has not yet been tested, and may be addressed at a later time.
 
 ** Please note all game features are not yet complete/operative. This project is under development. **
 
-I'm working with Corona Simulator for testing and development, however a .jar package of the latest
-build can be found here (in the jar directory) if needed.
+I'm working with Corona Simulator for testing and development, however a .apk package of the latest
+build can be found here (in the apk directory) if needed.
