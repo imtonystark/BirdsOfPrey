@@ -74,11 +74,11 @@ local setWeapons
 local moveShip
 local fireTorp
 -- preload sounds
-local torpedoSound = audio.loadSound( "torpedo.mp3" )
-local enginesSound = audio.loadSound("engines.mp3")
-local phasersSound = audio.loadSound("phaser.mp3")
-local klingonHitSound= audio.loadSound("largeexplosion2.mp3")
-local themeSong = audio.loadSound("theme.mp3")
+local torpedoSound = audio.loadSound( "sounds/torpedo.mp3" )
+local enginesSound = audio.loadSound("sounds/engines.mp3")
+local phasersSound = audio.loadSound("sounds/phaser.mp3")
+local klingonHitSound= audio.loadSound("sounds/largeexplosion2.mp3")
+local themeSong = audio.loadSound("sounds/theme.mp3")
 
 ------------------------------------------------------------------------------
 -- Init Physics engine
@@ -95,7 +95,7 @@ insideSquareLength = squareLength / 8
 local function createPlayScreen()
 
 	displayGroup = display.newGroup()
-	frame = display.newImageRect( displayGroup,"frame.png", _W, _H )
+	frame = display.newImageRect( displayGroup,"images/frame.png", _W, _H )
 	frame.x = _W/2
 	frame.y = _H/2
 	gametileborder = display.newRoundedRect(displayGroup, frame.x,frame.y,squareLength*1.02,squareLength*1.02,10)
@@ -108,7 +108,7 @@ local function createPlayScreen()
 	
 			for j = 1, 8 , 1 do	
 	
-				square =  display.newImageRect(displayGroup,"backtile.png", insideSquareLength , insideSquareLength )
+				square =  display.newImageRect(displayGroup,"images/backtile.png", insideSquareLength , insideSquareLength )
 				square.name = "square"
 				square:addEventListener("tap",jumpShip)
 
@@ -127,7 +127,7 @@ local function createPlayScreen()
 				if (temp[sector][i][j] ==  1 ) then
 					local cloaked = math.random(1,2)
 					 
-					klingons[id] = display.newImageRect(displayGroup,"klingon.png",insideSquareLength,insideSquareLength)
+					klingons[id] = display.newImageRect(displayGroup,"images/klingon.png",insideSquareLength,insideSquareLength)
 					klingons[id].x = square.x
 					klingons[id].y = square.y
 					klingons[id].gridXY = {i,j}
@@ -157,7 +157,7 @@ local function createPlayScreen()
 
 end
 	
-    ship = display.newImageRect(displayGroup,"enterprise.png",insideSquareLength,insideSquareLength)
+    ship = display.newImageRect(displayGroup,"images/enterprise.png",insideSquareLength,insideSquareLength)
 	ship.x = display.contentCenterX
 	ship.y = display.contentCenterY
 	xPos = ship.x
@@ -173,10 +173,10 @@ end
 	ship:addEventListener("collision", ship)
 
 	
-menuBtn1 = widget.newButton {displayGroup, font = "ArcadeClassic.TTF",label = "Nav", height = _H*.05, width = _W* .175, defaultFile="buttonnormal.png", overFile="buttonpressed.png",onRelease = function() menuSelects(1,0) catbutton = 1 end}
-menuBtn2 = widget.newButton {displayGroup, font = "ArcadeClassic.TTF",label = "Tac", height = _H*.05, width = _W* .175, defaultFile="buttonnormal.png", overFile="buttonpressed.png",onRelease = function() weaponsActive = true menuSelects(2,0) catbutton = 2 end}
-menuBtn3 = widget.newButton {displayGroup, font = "ArcadeClassic.TTF",label = "Sen", height = _H*.05, width = _W* .175, defaultFile="buttonnormal.png", overFile="buttonpressed.png",onRelease = function() menuSelects(3,0) catbutton = 3 end}
-menuBtn4 = widget.newButton {displayGroup, font = "ArcadeClassic.TTF",label = "Com", height = _H*.05, width = _W* .175, defaultFile="buttonnormal.png", overFile="buttonpressed.png",onRelease = function() menuSelects(4,0) catbutton = 4 end}
+menuBtn1 = widget.newButton {displayGroup, font = "fonts/ArcadeClassic.TTF",label = "Nav", height = _H*.05, width = _W* .175, defaultFile="images/buttonnormal.png", overFile="images/buttonpressed.png",onRelease = function() menuSelects(1,0) catbutton = 1 end}
+menuBtn2 = widget.newButton {displayGroup, font = "fonts/ArcadeClassic.TTF",label = "Tac", height = _H*.05, width = _W* .175, defaultFile="images/buttonnormal.png", overFile="images/buttonpressed.png",onRelease = function() weaponsActive = true menuSelects(2,0) catbutton = 2 end}
+menuBtn3 = widget.newButton {displayGroup, font = "fonts/ArcadeClassic.TTF",label = "Sen", height = _H*.05, width = _W* .175, defaultFile="images/buttonnormal.png", overFile="images/buttonpressed.png",onRelease = function() menuSelects(3,0) catbutton = 3 end}
+menuBtn4 = widget.newButton {displayGroup, font = "fonts/ArcadeClassic.TTF",label = "Com", height = _H*.05, width = _W* .175, defaultFile="images/buttonnormal.png", overFile="images/buttonpressed.png",onRelease = function() menuSelects(4,0) catbutton = 4 end}
 menuBtn1.x = _W * .80
 menuBtn1.y = _H * .80
 menuBtn1:rotate(90)
@@ -197,21 +197,21 @@ menuBtn4.y = _H * .90
 menuBtn4:rotate(90)
 menuBtn4._view._label.size = 30
 
-btn1 = widget.newButton {displayGroup,font = "ArcadeClassic.TTF",label = "Impulse", height = _H*.05, width = _W*.20,defaultFile ="buttonnormal.png", overFile = "buttonpressed.png",onRelease = function()if btn1.myName == "Phasers" then weaponsActive = true phasers = true end if btn1.myName == "Impulse" then weaponsActive = false end end}
+btn1 = widget.newButton {displayGroup,font = "fonts/ArcadeClassic.TTF",label = "Impulse", height = _H*.05, width = _W*.20,defaultFile ="images/buttonnormal.png", overFile = "images/buttonpressed.png",onRelease = function()if btn1.myName == "Phasers" then weaponsActive = true phasers = true end if btn1.myName == "Impulse" then weaponsActive = false end end}
 btn1.x = _W * .60
 btn1.y = _H * .85
 btn1.myName = "Impulse"
 btn1:rotate(90)
 btn1._view._label.size = 30
 
-btn2 = widget.newButton {displayGroup,font = "ArcadeClassic.TTF",label = "Warp", height = _H*.05, width = _W*.20,defaultFile ="buttonnormal.png", overFile = "buttonpressed.png",onRelease = function() if btn2.myName == "Torp" then weaponsActive = true photons = true phasers = false end end}
+btn2 = widget.newButton {displayGroup,font = "fonts/ArcadeClassic.TTF",label = "Warp", height = _H*.05, width = _W*.20,defaultFile ="images/buttonnormal.png", overFile = "images/buttonpressed.png",onRelease = function() if btn2.myName == "Torp" then weaponsActive = true photons = true phasers = false end end}
 btn2.x = _W * .50
 btn2.y = _H * .85
 btn2.myName ="Warp"
 btn2:rotate(90)
 btn2._view._label.size = 30
 
-btn3 = widget.newButton {displayGroup,font = "ArcadeClassic.TTF",label = "Thrusters", height = _H*.05, width = _W*.20,defaultFile ="buttonnormal.png", overFile = "buttonpressed.png",onRelease = function() if btn3.myName == "Shields" then setShields(ship,ship.x,ship.y) end end}
+btn3 = widget.newButton {displayGroup,font = "fonts/ArcadeClassic.TTF",label = "Thrusters", height = _H*.05, width = _W*.20,defaultFile ="images/buttonnormal.png", overFile = "images/buttonpressed.png",onRelease = function() if btn3.myName == "Shields" then setShields(ship,ship.x,ship.y) end end}
 btn3.x = _W * .40
 btn3.y = _H * .85
 btn3.myName="Thrusters"
@@ -221,10 +221,10 @@ btn3._view._label.size = 30
 displayClock((_W *.20),(_H*.85))
 
 
-statusBar("Weapons",_W *.83 ,_H *.15,"redstatusbar.png",90)
-statusBar("Shields",_W *.61,_H *.15,"yellowstatusbar.png",90)
-statusBar("Engines",_W *.39,_H *.15,"bluestatusbar.png",90)
-statusBar("Reserves",_W *.17,_H *.15,"greenstatusbar.png",90)
+statusBar("Weapons",_W *.83 ,_H *.15,"images/redstatusbar.png",90)
+statusBar("Shields",_W *.61,_H *.15,"images/yellowstatusbar.png",90)
+statusBar("Engines",_W *.39,_H *.15,"images/bluestatusbar.png",90)
+statusBar("Reserves",_W *.17,_H *.15,"images/greenstatusbar.png",90)
 
 systemMessage(1,_W*.5,_H*.5,550,200,event)
 end
@@ -417,7 +417,7 @@ end
  function fireTorp(event)
 	local angle = compassGrid(ship.x,ship.y,event.target.x,event.target.y)
  transition.to( ship, { rotation=angle, time=750, transition=easing.inOutCubic } )
- timer.performWithDelay(750,function()  local newTorp = display.newImageRect("torp.png",10,10)
+ timer.performWithDelay(750,function()  local newTorp = display.newImageRect("images/torp.png",10,10)
    physics.addBody( newTorp, { density=3.0, friction=0.5, bounce=0.3 } )
     newTorp.isBullet = true
 	--newTorp:setLinearVelocity( 1000, 1000 )
@@ -512,11 +512,11 @@ function setWeapons(event)
 end
 
 function statusBar(barid,x,y,col,rot)
-local barLabel = display.newText(tostring(barid), x + (_W*.10), y, "ArcadeClassic.TTF", 24)
+local barLabel = display.newText(tostring(barid), x + (_W*.10), y, "fonts/ArcadeClassic.TTF", 24)
 barLabel:setFillColor(  0.72, 0.9, 0.16, 0.78 )
 barLabel.rotation = 90
 
-statusbar = display.newImageRect("statusbox.png",  BAR_WIDTH * (_W*.30),  BAR_HEIGHT * (_H*.10))
+statusbar = display.newImageRect("images/statusbox.png",  BAR_WIDTH * (_W*.30),  BAR_HEIGHT * (_H*.10))
 statusbar.x = x
 statusbar.y= y
 statusbar.name = barid
@@ -566,7 +566,7 @@ return effect
 end
 
 function fireDisrupter(id,event)
-    Torp = display.newImageRect("torp.png",10,10)
+    Torp = display.newImageRect("images/torp.png",10,10)
     --physics.addBody( Torp, { density=3.0, friction=0.5, bounce=0.3, isBullet=true, isSensor = true } )
     Torp.isBullet = true
 	
@@ -585,7 +585,7 @@ function fireDisrupter(id,event)
 audio.play(themeSong)
 local splashGroup = display.newGroup()
 
-splash = display.newImageRect(splashGroup,"starfield.png",_W,_H)
+splash = display.newImageRect(splashGroup,"images/starfield.png",_W,_H)
 splash.x = _W/2
 splash.y = _H/2
 --testing autoscale code snippet
@@ -594,12 +594,12 @@ splash:scale(scale, scale)
 --end snippet 
 --display title
 --local title = display.newImageRect( "birdsofprey.png",340,200)
-local title1 = display.newText(splashGroup,"Birds Of Prey",(_W/2),_H*.75, "FINALOLD.TTF",175)
+local title1 = display.newText(splashGroup,"Birds Of Prey",(_W/2),_H*.75, "fonts/FINALOLD.TTF",175)
 title1.x = display.contentCenterX 
 title1.y = _H /4
 title1:setFillColor(1,1,0,1.00)
 
-local title2 = display.newText(splashGroup,"An adaptation of the MicroComputer\n classic - Super Star Trek",title1.x,_H*.35,"FINALOLD.TTF",45)
+local title2 = display.newText(splashGroup,"An adaptation of the MicroComputer\n classic - Super Star Trek",title1.x,_H*.35,"fonts/FINALOLD.TTF",45)
 --title2.x = title1.x
 --title2.y = title2.y + 20
 title2.align = "center"
@@ -638,11 +638,11 @@ title2:setFillColor(1,1,0,1.00)
 flag = false
 
 ---begin animation
-enterprise = display.newImageRect(splashGroup,"pixelncc1701.png",150,100)
+enterprise = display.newImageRect(splashGroup,"images/pixelncc1701.png",150,100)
 enterprise.x = _W * .99 + 200
 enterprise.y = _H *.5
 
-klingon = display.newImageRect(splashGroup,"sideviewklingon.png", 80, 80)
+klingon = display.newImageRect(splashGroup,"images/sideviewklingon.png", 80, 80)
 klingon.x = display.contentCenterX + 50
 klingon.y = display.contentCenterY + 175
 klingon.alpha = 0
@@ -655,11 +655,11 @@ transition.to(enterprise, { x = _W *.01 - 200, y = _H * .5, delay = 10000, time 
 --transition.to(klingon, {alpha = 1, delay = 12500, time = 7000})
 transition.to(klingon, {alpha = 1, rotation = 90, delay = 11500, time = 6500, onComplete = function()transition.to(klingon,{delay = 750,x= _W *.01 -300, y = _H *.5,time = 1000}) end} )
 
-enterprise2 = display.newImageRect(splashGroup,"pixelncc1701.png",150,100)
+enterprise2 = display.newImageRect(splashGroup,"images/pixelncc1701.png",150,100)
 enterprise2.x = _W * .01 - 200
 enterprise2.y = _H * .5
 
-klingon2 = display.newImageRect(splashGroup,"sideviewklingon.png", 80, 80)
+klingon2 = display.newImageRect(splashGroup,"images/sideviewklingon.png", 80, 80)
 klingon2.x = _W * .01 - 200
 klingon2.y = _H * .05
 klingon2.rotation = 180
@@ -674,7 +674,7 @@ transition.to(enterprise2, {x = _W *.01 - 300, y = _H *.5 - 75, delay = 45000, t
 transition.to(klingon2, {x = _W *.01 - 300, y = _H * .5 - 75, delay = 46000, time = 2750 } )
 
 
-klingon3 = display.newImageRect(splashGroup,"sideviewklingon.png", 80, 80)
+klingon3 = display.newImageRect(splashGroup,"images/sideviewklingon.png", 80, 80)
 klingon3.x = display.contentCenterX + 120
 klingon3.y = display.contentCenterY + 0
 klingon3.rotation = 0
@@ -683,7 +683,7 @@ transition.to(klingon3, {
 alpha=1,delay = 25000, time = 2500 , 
 onComplete = function() transition.to(klingon3,{delay = 500, alpha = 0, time=1500})  
 
- local displayTorp = display.newImageRect("disrupter.png",10,30)
+ local displayTorp = display.newImageRect("images/disrupter.png",10,30)
 	displayTorp.x = klingon3.x + 5 
 	displayTorp.y = klingon3.y + 5
 	transition.to( displayTorp, {x=klingon3.x - 100,y=klingon3.y + 160, time=500, onComplete= function() display.remove(displayTorp) end  } )
@@ -691,7 +691,7 @@ onComplete = function() transition.to(klingon3,{delay = 500, alpha = 0, time=150
 end 
 } )
 
-klingon4 = display.newImageRect(splashGroup,"sideviewklingon.png", 80, 80)
+klingon4 = display.newImageRect(splashGroup,"images/sideviewklingon.png", 80, 80)
 klingon4.x = display.contentCenterX -120
 klingon4.y = display.contentCenterY + 220
 klingon4.rotation = 180
@@ -702,8 +702,8 @@ onComplete = function() transition.to(klingon4,{delay = 500, alpha = 0, time=150
 
 
 
-local displayTorp = display.newImageRect("disrupter.png",10,30)
-local displayTorp2 = display.newImageRect("disrupter.png",10,30)
+local displayTorp = display.newImageRect("images/disrupter.png",10,30)
+local displayTorp2 = display.newImageRect("images/disrupter.png",10,30)
 	displayTorp.x = klingon4.x + 10
 	displayTorp.y = klingon4.y + 50
 	displayTorp.rotation = 45
@@ -724,7 +724,7 @@ flag = false
 end
 function scrolltext(event)
 if flag == true then
-local scrolling = display.newText(splashGroup,"TAP  ANYWHERE  TO  BEGIN !!!     ...", 50, 50, "ArcadeClassic.ttf", 38 )
+local scrolling = display.newText(splashGroup,"TAP  ANYWHERE  TO  BEGIN !!!     ...", 50, 50, "fonts/ArcadeClassic.ttf", 38 )
 scrolling.x = _W * .99 + 300
 scrolling.y = _H *.85
 scrolling.alpha=1 
@@ -737,7 +737,7 @@ end
 return true
 end 
 timer.performWithDelay(3800,scrolltext,-1)
-splash:addEventListener("tap",function()stopAnim(event) transition.cancel() display.remove(splashGroup) audio.stop() spawnKlingons() createPlayScreen() display.remove(startBtn) display.remove(title) return true end)
+splash:addEventListener("tap",function()stopAnim(event) transition.cancel() display.remove(splashGroup) audio.stop() spawnKlingons() createPlayScreen() return true end)
 --startBtn = widget.newButton {splashGroup,label = "START!", height = 50,width = 100, defaultFile ="buttonnormal.png", overfile = "buttonpressed.png", onRelease = function()stopAnim(event) transition.cancel() display.remove(splashGroup) audio.stop() spawnKlingons() createPlayScreen() display.remove(startBtn) display.remove(title) return true end}
 --startBtn.rotate = 90
 --startBtn.x = display.contentCenterX

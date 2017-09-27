@@ -3,7 +3,7 @@
 -- Code By: Jesse L Blum
 -- Revised 2/10/2017
 ------------------------------------------------------------------------------
-local keySound =audio.loadSound("keysound.wav")
+local keySound =audio.loadSound("sounds/keysound.wav")
 local MSGTABLE = {}
 local globals = require("globals")
 s = "	"
@@ -19,10 +19,10 @@ MSGTABLE = {" ".. s .. "STARFLEET COMMAND PRIORITY MESSAGE 		 \n" ..
 count = 0
                                                                       
 function systemMessage(msgIndex,x,y,height,width,event)
-local boxImage = io.open("msgBox.png","r")
+local boxImage = io.open("images/msgBox.png","r")
 if (boxImage) then
 
-msgBox = display.newImageRect("msgBox.png", height, width)
+msgBox = display.newImageRect("images/msgBox.png", height, width)
 msgBox.x = x
 msgBox.y = y
 msgBox.rotation = 90
@@ -35,7 +35,7 @@ end
 --msgBox.Tap = display.remove(msgBox)
 local msgText = display.newText({
    text = "",
-   font = "ArcadeClassic.ttf",
+   font = "fonts/ArcadeClassic.ttf",
    fontSize = 18,
    width = height *.85,
    height = width *.85,
